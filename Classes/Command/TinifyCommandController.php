@@ -21,7 +21,7 @@ class TinifyCommandController extends CommandController
      *
      * @return void
      */
-    public function createCommand()
+    public function compressCommand()
     {
         $tinify = $this->tinifyFactory->tinify();
         $this->outputLine("\n" . $tinify['tinified'] . ' out of ' . $tinify['total'] . ' images were tinified. 💪');
