@@ -31,11 +31,12 @@ class TinifyFactory
     }
 
     /**
+     * @param string $siteNode
      * @return array
      */
-    public function tinify():array
+    public function tinify(string $siteNode):array
     {
-        $images = $this->nodeService->getImages();
+        $images = $this->nodeService->getImages($siteNode);
         $count = 0;
         $totalCount = 0;
         if(!empty($images)) {

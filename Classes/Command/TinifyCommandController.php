@@ -19,11 +19,12 @@ class TinifyCommandController extends CommandController
     /**
      * Tinify jpegs
      *
+     * @param string $siteNode
      * @return void
      */
-    public function compressCommand()
+    public function compressCommand(string $siteNode)
     {
-        $tinify = $this->tinifyFactory->tinify();
+        $tinify = $this->tinifyFactory->tinify($siteNode);
         $this->outputLine("\n" . $tinify['tinified'] . ' out of ' . $tinify['total'] . ' images were tinified. 💪');
     }
 

@@ -26,12 +26,13 @@ class NodeService
     protected $resourceManager;
 
     /**
+     * @param string $siteNode
      * @return array
      */
-    public function getImages():array
+    public function getImages(string $siteNode):array
     {
-        $siteNodeImages = $this->getPropertiesWithImages($this->getSiteNode());
-        $nodeImages = $this->getPropertiesWithImages($this->getNodes());
+        $siteNodeImages = $this->getPropertiesWithImages($this->getSiteNode($siteNode));
+        $nodeImages = $this->getPropertiesWithImages($this->getNodes($siteNode));
         $images = [];
         if(!empty($siteNodeImages)) {
             foreach ($siteNodeImages as $siteNodeImage) {
@@ -82,22 +83,24 @@ class NodeService
     }
 
     /**
+     * @param string $siteNode
      * @return array
      */
-    public function getSiteNode():array
+    public function getSiteNode(string $siteNode):array
     {
         $context = $this->contextFactory->create(array('invisibleContentShown' => true));
-        $siteNode = $context->getCurrentSiteNode();
+        $siteNode = $context->getNode('/sites/'. $siteNode);
         return (new FlowQuery(array($siteNode)))->context(array('invisibleContentShown' => true))->get();
     }
 
     /**
+     * @param string $siteNode
      * @return array
      */
-    public function getNodes():array
+    public function getNodes(string $siteNode):array
     {
         $context = $this->contextFactory->create(array('invisibleContentShown' => true));
-        $siteNode = $context->getCurrentSiteNode();
+        $siteNode = $context->getNode('/sites/'. $siteNode);
         return (new FlowQuery(array($siteNode)))->context(array('invisibleContentShown' => true))->find('[instanceof Neos.Neos:Node]')->sort('_index', 'ASC')->get();
     }
 
