@@ -1,0 +1,19 @@
+{
+    "description": "A package to automate your JPEG compression workflow with the Tinify (TinyPNG) API in Neos CMS.",
+    "type": "neos-package",
+    "name": "inoovum/tinify",
+    "require": {
+        "neos/neos": "*",
+        "tinify/tinify": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Inoovum\\Tinify\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "Inoovum.Tinify"
+        }
+    }
+}
